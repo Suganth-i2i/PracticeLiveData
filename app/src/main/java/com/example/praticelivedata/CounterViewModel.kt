@@ -3,6 +3,8 @@ package com.example.praticelivedata
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.*
 
 class CounterViewModel : ViewModel() {
     var counter = MutableLiveData<Int>().apply {
@@ -10,14 +12,18 @@ class CounterViewModel : ViewModel() {
     }
 
     fun incCount() {
-        counter.value?.let {
-            counter.value = it+1
+        viewModelScope.launch(Dispatchers.Main) {
+                counter.value?.let {
+                    counter.setValue(it+1)
+            }
         }
     }
 
     fun decCount() {
-        counter.value?.let {
-            counter.value = it-1
+        viewModelScope.launch(Dispatchers.Main) {
+            counter.value?.let {
+                counter.setValue(it-1)
+            }
         }
     }
 

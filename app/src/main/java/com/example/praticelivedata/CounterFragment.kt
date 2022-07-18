@@ -1,18 +1,19 @@
 package com.example.praticelivedata
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.praticelivedata.databinding.FragmentCounterBinding
+import kotlinx.coroutines.CoroutineScope
 
 class CounterFragment : Fragment() {
 
     private lateinit var binding: FragmentCounterBinding
-    lateinit var viewModel: CounterViewModel
+    private val viewModel: CounterViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +30,6 @@ class CounterFragment : Fragment() {
     }
 
     private fun attachObservers() {
-        viewModel = ViewModelProvider(requireActivity()).get(CounterViewModel::class.java)
         viewModel.getCount().observe(viewLifecycleOwner) {
             binding.txtCounter.text = it.toString()
         }

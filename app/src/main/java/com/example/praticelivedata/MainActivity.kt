@@ -1,18 +1,17 @@
 package com.example.praticelivedata
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Display
-import android.view.View
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.praticelivedata.databinding.ActivityMainBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var viewModel: CounterViewModel
+    private val viewModel: CounterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clickListeners() {
-        viewModel = ViewModelProvider(this).get(CounterViewModel::class.java)
         binding.btnInc.setOnClickListener {
             viewModel.incCount()
         }
