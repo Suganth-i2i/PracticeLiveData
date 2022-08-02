@@ -1,26 +1,39 @@
 package com.example.praticelivedata
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Display
-import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.praticelivedata.databinding.ActivityMainBinding
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.ktx.logEvent
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     lateinit var viewModel: CounterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        firebaseAnalytics = Firebase.analytics
         initView()
         clickListeners()
+        recordScreenView()
+    }
+
+    private fun recordScreenView() {
+        val screenName = "Main Page"
+
+        // [START set_current_screen]
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW) {
+            param(FirebaseAnalytics.Param.SCREEN_NAME, screenName)
+            param(FirebaseAnalytics.Param.SCREEN_CLASS, "MainActivity")
+        }
     }
 
     private fun clickListeners() {
@@ -31,6 +44,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnDec.setOnClickListener{
             viewModel.decCount()
+        }
+
+        binding.nextScrn.setOnClickListener {
+            startActivity(Intent(this,HomeActivity::class.java))
         }
     }
 

@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/Personal Projects/PraticeLiveData/app/src/main/res/layout/activity_cancelled_orders.xml" value="0.16770833333333332" />
+        <entry key="..\:/Android Projects/Personal Projects/PraticeLiveData/app/src/main/res/layout/activity_cart.xml" value="0.16770833333333332" />
+        <entry key="..\:/Android Projects/Personal Projects/PraticeLiveData/app/src/main/res/layout/activity_home.xml" value="0.16770833333333332" />
         <entry key="..\:/Android Projects/Personal Projects/PraticeLiveData/app/src/main/res/layout/activity_main.xml" value="0.16770833333333332" />
+        <entry key="..\:/Android Projects/Personal Projects/PraticeLiveData/app/src/main/res/layout/activity_payment.xml" value="0.16770833333333332" />
         <entry key="..\:/Android Projects/Personal Projects/PraticeLiveData/app/src/main/res/layout/fragment_counter.xml" value="0.16770833333333332" />
       </map>
     </option>
